@@ -83,30 +83,14 @@ export default function SimulatorPage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto flex flex-col gap-10">
+      <main className="max-w-[1400px] mx-auto flex flex-col gap-10">
         
-        {/* Interactive Map (Highlighted & Large) */}
-        <section className="w-full">
-            <div className="glass-panel rounded-[2.5rem] p-4 border border-indigo-500/30 shadow-[0_0_50px_rgba(99,102,241,0.2)]">
-              <div className="rounded-[2rem] overflow-hidden relative h-[600px] flex flex-col">
-                <div className="absolute top-6 left-6 z-10 bg-black/50 backdrop-blur-xl px-5 py-3 rounded-2xl flex items-center gap-3 border border-white/10 shadow-2xl">
-                    <MapPin size={20} className="text-indigo-400 animate-pulse" />
-                    <span className="text-sm font-bold tracking-widest uppercase text-white shadow-sm">Route Visualizer</span>
-                </div>
-                <div className="flex-1 w-full h-full relative">
-                    <MapComponent edges={activeEdges} />
-                    <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]" />
-                </div>
-              </div>
-            </div>
-        </section>
-
-        {/* Configuration and Metrics */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Top Section: Control Center (Left) and Map (Right) using Flexbox */}
+        <section className="flex flex-col lg:flex-row gap-8 w-full">
           
-          {/* Control Center */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            <div className="glass-panel rounded-3xl p-8 flex flex-col h-full relative border border-white/10 shadow-2xl">
+          {/* Left Side: Control Center */}
+          <div className="flex-1 lg:max-w-md flex flex-col gap-6">
+            <div className="glass-panel rounded-3xl p-8 flex flex-col h-full border border-white/10 shadow-2xl">
                
                <h2 className="text-xl font-bold text-white tracking-wide mb-8 flex items-center gap-3 border-b border-white/10 pb-4">
                 <Navigation size={24} className="text-indigo-400" /> Simulator Config
@@ -122,9 +106,9 @@ export default function SimulatorPage() {
                         className="appearance-none bg-black/40 border border-white/10 rounded-2xl p-4 text-sm focus:border-indigo-500 outline-none text-white w-full cursor-pointer transition-colors"
                       >
                         <option value="dijkstra">Dijkstra (Shortest Path)</option>
-                        <option value="bellman">Bellman-Ford (Arbitrage Detection)</option>
-                        <option value="kruskal">Kruskal (MST Topology)</option>
-                        <option value="prim">Prim (MST Topology)</option>
+                        <option value="bellman">Bellman-Ford (Arbitrage)</option>
+                        <option value="kruskal">Kruskal (MST)</option>
+                        <option value="prim">Prim (MST)</option>
                       </select>
                       <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
                         <ArrowRight size={16} className="text-gray-500 transform rotate-90" />
@@ -170,39 +154,49 @@ export default function SimulatorPage() {
             </div>
           </div>
 
-          {/* Metrics Results */}
-          <div className="lg:col-span-7 flex flex-col gap-6 justify-center">
-            <h3 className="text-xl font-bold tracking-wide text-white mb-2 ml-2 flex items-center gap-3">
-               <Activity className="text-emerald-400" /> Computed Telemetry
-            </h3>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="glass-panel p-8 rounded-3xl flex flex-col gap-4 border-l-4 border-l-blue-500 shadow-xl hover:bg-white/[0.03] transition-colors">
-                    <div className="flex items-center gap-3 text-blue-400">
-                        <Ruler size={24} />
-                        <span className="uppercase tracking-widest text-sm font-bold text-gray-400">Total Distance</span>
-                    </div>
-                    <div className="text-5xl font-black text-white">{metrics.distance} <span className="text-xl text-gray-500 font-medium">km</span></div>
+          {/* Right Side: Interactive Map (Highlighted) */}
+          <div className="flex-[2] flex flex-col">
+            <div className="glass-panel rounded-[2.5rem] p-4 border border-indigo-500/30 shadow-[0_0_50px_rgba(99,102,241,0.2)] h-full min-h-[500px]">
+              <div className="rounded-[2rem] overflow-hidden relative h-full flex flex-col">
+                <div className="absolute top-6 left-6 z-10 bg-black/50 backdrop-blur-xl px-5 py-3 rounded-2xl flex items-center gap-3 border border-white/10 shadow-2xl">
+                    <MapPin size={20} className="text-indigo-400 animate-pulse" />
+                    <span className="text-sm font-bold tracking-widest uppercase text-white shadow-sm">Route Visualizer</span>
                 </div>
-
-                <div className="glass-panel p-8 rounded-3xl flex flex-col gap-4 border-l-4 border-l-indigo-500 shadow-xl hover:bg-white/[0.03] transition-colors">
-                    <div className="flex items-center gap-3 text-indigo-400">
-                        <Clock size={24} />
-                        <span className="uppercase tracking-widest text-sm font-bold text-gray-400">Est. Time</span>
-                    </div>
-                    <div className="text-4xl font-black text-white mt-1">{metrics.time}</div>
+                <div className="flex-1 w-full h-full relative">
+                    <MapComponent edges={activeEdges} />
+                    <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]" />
                 </div>
-
-                <div className="glass-panel p-8 rounded-3xl flex flex-col gap-4 sm:col-span-2 border-l-4 border-l-emerald-500 shadow-xl hover:bg-white/[0.03] transition-colors">
-                    <div className="flex items-center gap-3 text-emerald-400">
-                        <CreditCard size={24} />
-                        <span className="uppercase tracking-widest text-sm font-bold text-gray-400">Toll Expense</span>
-                    </div>
-                    <div className="text-5xl font-black text-white"><span className="text-3xl text-gray-500 mr-2">₹</span>{metrics.toll.replace('₹','')}</div>
-                </div>
+              </div>
             </div>
           </div>
 
+        </section>
+
+        {/* Bottom Section: Metrics Results (3 Flexboxes) */}
+        <section className="flex flex-col md:flex-row gap-6 w-full justify-between">
+            <div className="flex-1 glass-panel p-8 rounded-3xl flex flex-col items-center text-center gap-4 border-t-4 border-t-blue-500 shadow-xl hover:bg-white/[0.03] transition-colors">
+                <div className="flex items-center justify-center gap-3 text-blue-400">
+                    <Ruler size={24} />
+                    <span className="uppercase tracking-widest text-sm font-bold text-gray-400">Total Distance</span>
+                </div>
+                <div className="text-5xl font-black text-white">{metrics.distance} <span className="text-xl text-gray-500 font-medium">km</span></div>
+            </div>
+
+            <div className="flex-1 glass-panel p-8 rounded-3xl flex flex-col items-center text-center gap-4 border-t-4 border-t-indigo-500 shadow-xl hover:bg-white/[0.03] transition-colors">
+                <div className="flex items-center justify-center gap-3 text-indigo-400">
+                    <Clock size={24} />
+                    <span className="uppercase tracking-widest text-sm font-bold text-gray-400">Est. Time</span>
+                </div>
+                <div className="text-4xl font-black text-white mt-1">{metrics.time}</div>
+            </div>
+
+            <div className="flex-1 glass-panel p-8 rounded-3xl flex flex-col items-center text-center gap-4 border-t-4 border-t-emerald-500 shadow-xl hover:bg-white/[0.03] transition-colors">
+                <div className="flex items-center justify-center gap-3 text-emerald-400">
+                    <CreditCard size={24} />
+                    <span className="uppercase tracking-widest text-sm font-bold text-gray-400">Toll Expense</span>
+                </div>
+                <div className="text-5xl font-black text-white"><span className="text-3xl text-gray-500 mr-2">₹</span>{metrics.toll.replace('₹','')}</div>
+            </div>
         </section>
       </main>
       
