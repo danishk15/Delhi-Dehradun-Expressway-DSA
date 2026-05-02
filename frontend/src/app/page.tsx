@@ -29,16 +29,16 @@ export default function Home() {
            </h2>
         </div>
 
-        {/* Theory Section - Vertical Stack */}
-        <div className="flex flex-col gap-8 w-full">
+        {/* Theory Section - Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl mx-auto">
             
-            <div className="floating-card-1 glass-panel p-8 md:p-10 rounded-3xl hover:bg-white/[0.03] transition-all group flex flex-col items-center text-center gap-6">
-              <div className="w-20 h-20 shrink-0 rounded-[2rem] bg-blue-500/10 flex items-center justify-center border border-blue-500/20 group-hover:scale-110 transition-transform shadow-[0_0_30px_rgba(59,130,246,0.2)]">
-                 <RouteIcon size={32} className="text-blue-400" />
+            <div className="floating-card-1 glass-panel p-8 rounded-3xl hover:bg-white/[0.03] transition-all group flex flex-col items-center text-center gap-4">
+              <div className="w-16 h-16 shrink-0 rounded-2xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20 group-hover:scale-110 transition-transform shadow-[0_0_30px_rgba(59,130,246,0.2)]">
+                 <RouteIcon size={28} className="text-blue-400" />
               </div>
-              <div className="flex flex-col items-center w-full max-w-2xl">
-                  <h3 className="text-2xl text-white font-bold mb-3 tracking-wide">Dijkstra's Algorithm</h3>
-                  <p className="text-base text-gray-400 mb-6 leading-relaxed">
+              <div className="flex flex-col items-center w-full">
+                  <h3 className="text-xl text-white font-bold mb-2 tracking-wide">Dijkstra's Algorithm</h3>
+                  <p className="text-sm text-gray-400 mb-6 leading-relaxed">
                     Used to calculate the absolute shortest path between the Origin and Destination hubs. It utilizes a Priority Queue to greedily select the closest unvisited node, ensuring the optimal route based on distance, time, or cost.
                   </p>
                   <div className="flex flex-wrap gap-4 text-xs font-semibold text-gray-300 justify-center">
@@ -48,13 +48,13 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="floating-card-2 glass-panel p-8 md:p-10 rounded-3xl hover:bg-white/[0.03] transition-all group flex flex-col items-center text-center gap-6">
-              <div className="w-20 h-20 shrink-0 rounded-[2rem] bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 group-hover:scale-110 transition-transform shadow-[0_0_30px_rgba(16,185,129,0.2)]">
-                 <Activity size={32} className="text-emerald-400" />
+            <div className="floating-card-2 glass-panel p-8 rounded-3xl hover:bg-white/[0.03] transition-all group flex flex-col items-center text-center gap-4">
+              <div className="w-16 h-16 shrink-0 rounded-2xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 group-hover:scale-110 transition-transform shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+                 <Activity size={28} className="text-emerald-400" />
               </div>
-              <div className="flex flex-col items-center w-full max-w-2xl">
-                  <h3 className="text-2xl text-white font-bold mb-3 tracking-wide">Kruskal's Algorithm</h3>
-                  <p className="text-base text-gray-400 mb-6 leading-relaxed">
+              <div className="flex flex-col items-center w-full">
+                  <h3 className="text-xl text-white font-bold mb-2 tracking-wide">Kruskal's Algorithm</h3>
+                  <p className="text-sm text-gray-400 mb-6 leading-relaxed">
                     Generates the Minimum Spanning Tree (MST) of the expressway network. It sorts all highway edges by weight and iteratively adds them to the network, avoiding cycles through a Disjoint Set data structure.
                   </p>
                   <div className="flex flex-wrap gap-4 text-xs font-semibold text-gray-300 justify-center">
@@ -64,13 +64,13 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="floating-card-3 glass-panel p-8 md:p-10 rounded-3xl hover:bg-white/[0.03] transition-all group flex flex-col items-center text-center gap-6">
-              <div className="w-20 h-20 shrink-0 rounded-[2rem] bg-purple-500/10 flex items-center justify-center border border-purple-500/20 group-hover:scale-110 transition-transform shadow-[0_0_30px_rgba(168,85,247,0.2)]">
-                 <GitMerge size={32} className="text-purple-400" />
+            <div className="floating-card-3 glass-panel p-8 rounded-3xl hover:bg-white/[0.03] transition-all group flex flex-col items-center text-center gap-4">
+              <div className="w-16 h-16 shrink-0 rounded-2xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20 group-hover:scale-110 transition-transform shadow-[0_0_30px_rgba(168,85,247,0.2)]">
+                 <GitMerge size={28} className="text-purple-400" />
               </div>
-              <div className="flex flex-col items-center w-full max-w-2xl">
-                  <h3 className="text-2xl text-white font-bold mb-3 tracking-wide">Prim's Algorithm</h3>
-                  <p className="text-base text-gray-400 mb-6 leading-relaxed">
+              <div className="flex flex-col items-center w-full">
+                  <h3 className="text-xl text-white font-bold mb-2 tracking-wide">Prim's Algorithm</h3>
+                  <p className="text-sm text-gray-400 mb-6 leading-relaxed">
                     An alternative approach to constructing the Minimum Spanning Tree. It begins at an arbitrary hub and continually expands the connected network by attaching the cheapest edge to an unvisited destination.
                   </p>
                   <div className="flex flex-wrap gap-4 text-xs font-semibold text-gray-300 justify-center">
@@ -80,13 +80,13 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="floating-card-4 glass-panel p-8 md:p-10 rounded-3xl hover:bg-white/[0.03] transition-all group flex flex-col items-center text-center gap-6">
-              <div className="w-20 h-20 shrink-0 rounded-[2rem] bg-rose-500/10 flex items-center justify-center border border-rose-500/20 group-hover:scale-110 transition-transform shadow-[0_0_30px_rgba(243,64,121,0.2)]">
-                 <Zap size={32} className="text-rose-400" />
+            <div className="floating-card-4 glass-panel p-8 rounded-3xl hover:bg-white/[0.03] transition-all group flex flex-col items-center text-center gap-4">
+              <div className="w-16 h-16 shrink-0 rounded-2xl bg-rose-500/10 flex items-center justify-center border border-rose-500/20 group-hover:scale-110 transition-transform shadow-[0_0_30px_rgba(243,64,121,0.2)]">
+                 <Zap size={28} className="text-rose-400" />
               </div>
-              <div className="flex flex-col items-center w-full max-w-2xl">
-                  <h3 className="text-2xl text-white font-bold mb-3 tracking-wide">Bellman-Ford Algorithm</h3>
-                  <p className="text-base text-gray-400 mb-6 leading-relaxed">
+              <div className="flex flex-col items-center w-full">
+                  <h3 className="text-xl text-white font-bold mb-2 tracking-wide">Bellman-Ford Algorithm</h3>
+                  <p className="text-sm text-gray-400 mb-6 leading-relaxed">
                     Capable of processing networks with negative edge weights. In this simulation, it relaxes all edges sequentially to detect negative toll cycles, highlighting potential arbitrage vulnerabilities in the system.
                   </p>
                   <div className="flex flex-wrap gap-4 text-xs font-semibold text-gray-300 justify-center">
