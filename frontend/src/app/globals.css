@@ -3,73 +3,55 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0a0a;
+  --background: #050508;
   --foreground: #fafafa;
 }
 
 body {
   background-color: var(--background);
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
   color: var(--foreground);
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
 }
 
-/* Glassmorphism utility */
+/* Premium Glassmorphism */
 .glass-panel {
-  background: rgba(10, 10, 10, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(20, 20, 28, 0.4);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 24px 40px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Neon accents */
-.neon-border {
-  border: 1px solid rgba(0, 245, 160, 0.3);
-  box-shadow: 0 0 15px rgba(0, 245, 160, 0.1);
+.premium-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.neon-text {
-  color: #00f5a0;
-  text-shadow: 0 0 10px rgba(0, 245, 160, 0.3);
+/* Beautiful Animated Background */
+.premium-bg {
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08), transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.08), transparent 30%);
+  background-color: #050508;
+  background-attachment: fixed;
 }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 245, 160, 0.3);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 245, 160, 0.6);
-}
-
-/* Background Edge Glows */
-.glow-edge {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  z-index: -1;
-  background: radial-gradient(circle at top right, rgba(0, 245, 160, 0.15), transparent 50%),
-              radial-gradient(circle at bottom left, rgba(0, 150, 255, 0.1), transparent 50%);
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
 
 /* Floating animation for boxes */
-.floating-box-1 { animation: float 6s ease-in-out infinite; }
-.floating-box-2 { animation: float 7s ease-in-out infinite 1s; }
-.floating-box-3 { animation: float 8s ease-in-out infinite 2s; }
-.floating-box-4 { animation: float 6.5s ease-in-out infinite 0.5s; }
+.floating-card-1 { animation: float-premium 8s ease-in-out infinite; }
+.floating-card-2 { animation: float-premium 9s ease-in-out infinite 1s; }
+.floating-card-3 { animation: float-premium 10s ease-in-out infinite 2s; }
+.floating-card-4 { animation: float-premium 8.5s ease-in-out infinite 0.5s; }
 
-@keyframes float {
+@keyframes float-premium {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
 }
