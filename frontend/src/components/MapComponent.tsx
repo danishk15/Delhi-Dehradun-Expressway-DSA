@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -13,19 +13,15 @@ const icon = L.icon({
   iconAnchor: [12, 41],
 });
 
-export default function MapComponent() {
-  // Hardcoded for standalone Vercel deployment
-  const [cities] = useState<any[]>([
-    { id: 1, name: 'Delhi Hub', lat: 28.7041, lng: 77.1025 },
-    { id: 2, name: 'Baghpat Checkpoint', lat: 28.9428, lng: 77.2274 },
-    { id: 3, name: 'Shamli', lat: 29.4478, lng: 77.3061 },
-    { id: 4, name: 'Saharanpur Grid', lat: 29.9640, lng: 77.5460 },
-    { id: 5, name: 'Dehradun Terminus', lat: 30.3165, lng: 78.0322 }
-  ]);
+export const CITIES: Record<string, any> = {
+    'Delhi Hub': { id: 1, name: 'Delhi Hub', lat: 28.7041, lng: 77.1025 },
+    'Baghpat Checkpoint': { id: 2, name: 'Baghpat Checkpoint', lat: 28.9428, lng: 77.2274 },
+    'Shamli': { id: 3, name: 'Shamli', lat: 29.4478, lng: 77.3061 },
+    'Saharanpur Grid': { id: 4, name: 'Saharanpur Grid', lat: 29.9640, lng: 77.5460 },
+    'Dehradun Terminus': { id: 5, name: 'Dehradun Terminus', lat: 30.3165, lng: 78.0322 }
+};
 
-  // Format coordinates for Leaflet Polyline: [lat, lng]
-  const routeCoordinates: [number, number][] = cities.map(c => [c.lat, c.lng]);
-
+export default function MapComponent({ route }: { route: [number, number][] }) {
   return (
     <div className="w-full h-full relative z-0">
       <MapContainer 
@@ -38,15 +34,15 @@ export default function MapComponent() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
         />
-        {cities.map((city, idx) => (
+        {Object.values(CITIES).map((city: any, idx) => (
           <Marker key={idx} position={[city.lat, city.lng]} icon={icon}>
             <Popup>
               <span className="font-bold text-gray-800">{city.name}</span>
             </Popup>
           </Marker>
         ))}
-        {routeCoordinates.length > 0 && (
-          <Polyline positions={routeCoordinates} color="#3B82F6" weight={4} opacity={0.8} />
+        {route && route.length > 0 && (
+          <Polyline positions={route} color="#3B82F6" weight={4} opacity={0.8} />
         )}
       </MapContainer>
     </div>
