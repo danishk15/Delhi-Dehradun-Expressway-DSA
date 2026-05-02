@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { Layers, MapPin, Navigation, Activity, Zap, CreditCard, Clock, Ruler, Terminal, BookOpen, Route as RouteIcon, Database, ArrowRight } from 'lucide-react';
+import { Layers, MapPin, Navigation, Activity, Zap, CreditCard, Clock, Ruler, Terminal, BookOpen, Route as RouteIcon, Database, ArrowRight, GitMerge } from 'lucide-react';
 import { CITIES } from '@/data';
 import { runDijkstra, runKruskal, runPrim, runBellmanFord, Edge } from '@/utils/algorithms';
 
