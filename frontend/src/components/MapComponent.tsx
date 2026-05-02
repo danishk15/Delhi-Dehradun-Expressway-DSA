@@ -14,15 +14,14 @@ const icon = L.icon({
 });
 
 export default function MapComponent() {
-  const [cities, setCities] = useState<any[]>([]);
-
-  useEffect(() => {
-    // Fetch cities from backend
-    fetch('http://localhost:3001/cities')
-      .then(res => res.json())
-      .then(data => setCities(data))
-      .catch(e => console.error('Error fetching cities:', e));
-  }, []);
+  // Hardcoded for standalone Vercel deployment
+  const [cities] = useState<any[]>([
+    { id: 1, name: 'Delhi Hub', lat: 28.7041, lng: 77.1025 },
+    { id: 2, name: 'Baghpat Checkpoint', lat: 28.9428, lng: 77.2274 },
+    { id: 3, name: 'Shamli', lat: 29.4478, lng: 77.3061 },
+    { id: 4, name: 'Saharanpur Grid', lat: 29.9640, lng: 77.5460 },
+    { id: 5, name: 'Dehradun Terminus', lat: 30.3165, lng: 78.0322 }
+  ]);
 
   // Format coordinates for Leaflet Polyline: [lat, lng]
   const routeCoordinates: [number, number][] = cities.map(c => [c.lat, c.lng]);
