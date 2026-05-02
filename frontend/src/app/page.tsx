@@ -89,27 +89,28 @@ export default function Home() {
   const isRoutingAlgo = algorithm === 'dijkstra' || algorithm === 'bellman';
 
   return (
-    <div className="min-h-screen catchy-bg text-white p-4 md:p-8 font-sans">
+    <div className="min-h-screen text-white p-4 md:p-8 font-sans relative">
+      <div className="glow-edge" />
       
       {/* Header */}
-      <header className="flex flex-col md:flex-row items-center justify-between mb-12 max-w-7xl mx-auto bg-black/20 p-6 rounded-3xl border border-white/10 backdrop-blur-lg shadow-2xl">
+      <header className="flex flex-col md:flex-row items-center justify-between mb-12 max-w-7xl mx-auto glass-panel p-6 rounded-none border-t-2 border-t-[#00f5a0]">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_30px_rgba(34,211,238,0.6)]">
-            <Zap size={24} className="text-white" />
+          <div className="w-12 h-12 flex items-center justify-center">
+            <Terminal size={32} className="text-[#00f5a0]" />
           </div>
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-cyan-400">
-              DELHI-DEHRADUN <span className="text-cyan-400">NEXUS</span>
+            <h1 className="text-3xl font-mono tracking-tighter text-white">
+              // NH-709B <span className="neon-text font-bold">NEXUS</span>
             </h1>
-            <p className="text-sm text-cyan-200 uppercase tracking-widest mt-1 font-semibold">Smart Expressway Simulation</p>
+            <p className="text-sm text-gray-400 uppercase tracking-widest mt-1 font-mono">Expressway Data Node</p>
           </div>
         </div>
         
-        <div className="mt-4 md:mt-0 flex items-center gap-3 glass-panel px-5 py-2.5 rounded-full border border-green-400/40">
-          <Database size={16} className="text-green-400" />
-          <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse" />
-          <span className="text-xs text-green-300 font-mono tracking-wider font-bold">
-            {process.env.NEXT_PUBLIC_BACKEND_URL ? 'LINKED BACKEND ONLINE' : 'CLIENT ENGINE ONLINE'}
+        <div className="mt-4 md:mt-0 flex items-center gap-3 glass-panel px-5 py-2.5 rounded-none border border-[#00f5a0]/40">
+          <Database size={16} className="text-[#00f5a0]" />
+          <div className="w-2.5 h-2.5 bg-[#00f5a0] rounded-full animate-pulse" />
+          <span className="text-xs text-[#00f5a0] font-mono tracking-wider font-bold">
+            {process.env.NEXT_PUBLIC_BACKEND_URL ? 'BACKEND LINKED' : 'SYS.ONLINE'}
           </span>
         </div>
       </header>
@@ -118,56 +119,56 @@ export default function Home() {
         
         {/* Theory Section (Centered Floating Boxes) */}
         <section className="flex flex-col items-center mb-8">
-          <div className="flex items-center gap-3 mb-8">
-            <BookOpen className="text-cyan-400" size={28} />
-            <h2 className="text-2xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white to-cyan-200 uppercase drop-shadow-lg">
-              Algorithmic Theory & Analysis
+          <div className="flex items-center gap-3 mb-8 w-full justify-start border-b border-white/10 pb-4">
+            <BookOpen className="text-gray-400" size={24} />
+            <h2 className="text-xl font-mono tracking-widest text-white uppercase">
+              // Algorithmic_Theory
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
             
-            <div className="floating-box-1 bg-gradient-to-br from-blue-900/80 to-blue-950/80 p-6 rounded-3xl border border-blue-400/30 shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:shadow-[0_0_50px_rgba(59,130,246,0.6)] transition-all">
-              <h3 className="text-blue-300 font-extrabold uppercase mb-3 tracking-wider text-lg border-b border-blue-400/30 pb-2">Dijkstra's Algo</h3>
-              <p className="text-sm text-blue-100 mb-5 leading-relaxed">
-                Guarantees the <u className="decoration-blue-400 decoration-2 underline-offset-4 font-semibold">absolute shortest path</u> from a starting node. It uses a priority queue to greedily select the closest unvisited node. Optimal for routing without negative weights.
+            <div className="floating-box-1 glass-panel p-6 rounded-none border-l-4 border-l-blue-500 hover:bg-white/5 transition-all">
+              <h3 className="text-blue-400 font-mono uppercase mb-3 tracking-wider text-sm">Dijkstra's Algo</h3>
+              <p className="text-sm text-gray-300 mb-5 leading-relaxed">
+                Guarantees the <u className="decoration-blue-500 decoration-2 underline-offset-4">absolute shortest path</u> from a starting node. Uses a priority queue to select the closest unvisited node.
               </p>
-              <div className="flex flex-col gap-1 text-xs font-mono bg-blue-950/50 p-3 rounded-xl text-blue-200 border border-blue-800">
-                <span className="flex justify-between"><b>Time:</b> O(E log V)</span>
-                <span className="flex justify-between"><b>Space:</b> O(V)</span>
+              <div className="flex flex-col gap-1 text-[10px] font-mono bg-black/50 p-3 rounded-none text-gray-400 border border-white/5">
+                <span className="flex justify-between"><span>TIME</span> <span className="text-white">O(E log V)</span></span>
+                <span className="flex justify-between"><span>SPACE</span> <span className="text-white">O(V)</span></span>
               </div>
             </div>
 
-            <div className="floating-box-2 bg-gradient-to-br from-emerald-900/80 to-emerald-950/80 p-6 rounded-3xl border border-emerald-400/30 shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:shadow-[0_0_50px_rgba(16,185,129,0.6)] transition-all">
-              <h3 className="text-emerald-300 font-extrabold uppercase mb-3 tracking-wider text-lg border-b border-emerald-400/30 pb-2">Kruskal's Algo</h3>
-              <p className="text-sm text-emerald-100 mb-5 leading-relaxed">
-                Finds the <u className="decoration-emerald-400 decoration-2 underline-offset-4 font-semibold">Minimum Spanning Tree (MST)</u>. Sorts all edges by weight, adding the smallest edge to the MST provided it doesn't form a cycle (using Disjoint Sets).
+            <div className="floating-box-2 glass-panel p-6 rounded-none border-l-4 border-l-[#00f5a0] hover:bg-white/5 transition-all">
+              <h3 className="text-[#00f5a0] font-mono uppercase mb-3 tracking-wider text-sm">Kruskal's Algo</h3>
+              <p className="text-sm text-gray-300 mb-5 leading-relaxed">
+                Finds the <u className="decoration-[#00f5a0] decoration-2 underline-offset-4">Minimum Spanning Tree</u>. Sorts edges by weight, adding to MST if no cycles are formed using Disjoint Sets.
               </p>
-              <div className="flex flex-col gap-1 text-xs font-mono bg-emerald-950/50 p-3 rounded-xl text-emerald-200 border border-emerald-800">
-                <span className="flex justify-between"><b>Time:</b> O(E log E)</span>
-                <span className="flex justify-between"><b>Space:</b> O(V + E)</span>
+              <div className="flex flex-col gap-1 text-[10px] font-mono bg-black/50 p-3 rounded-none text-gray-400 border border-white/5">
+                <span className="flex justify-between"><span>TIME</span> <span className="text-white">O(E log E)</span></span>
+                <span className="flex justify-between"><span>SPACE</span> <span className="text-white">O(V + E)</span></span>
               </div>
             </div>
 
-            <div className="floating-box-3 bg-gradient-to-br from-purple-900/80 to-purple-950/80 p-6 rounded-3xl border border-purple-400/30 shadow-[0_0_30px_rgba(168,85,247,0.3)] hover:shadow-[0_0_50px_rgba(168,85,247,0.6)] transition-all">
-              <h3 className="text-purple-300 font-extrabold uppercase mb-3 tracking-wider text-lg border-b border-purple-400/30 pb-2">Prim's Algo</h3>
-              <p className="text-sm text-purple-100 mb-5 leading-relaxed">
-                Another greedy method for the <u className="decoration-purple-400 decoration-2 underline-offset-4 font-semibold">MST generation</u>. It starts from a single vertex and continually grows the tree by selecting the cheapest edge to an unvisited vertex.
+            <div className="floating-box-3 glass-panel p-6 rounded-none border-l-4 border-l-purple-500 hover:bg-white/5 transition-all">
+              <h3 className="text-purple-400 font-mono uppercase mb-3 tracking-wider text-sm">Prim's Algo</h3>
+              <p className="text-sm text-gray-300 mb-5 leading-relaxed">
+                Another greedy method for <u className="decoration-purple-500 decoration-2 underline-offset-4">MST generation</u>. Starts from a single vertex and continually grows the tree to unvisited vertices.
               </p>
-              <div className="flex flex-col gap-1 text-xs font-mono bg-purple-950/50 p-3 rounded-xl text-purple-200 border border-purple-800">
-                <span className="flex justify-between"><b>Time:</b> O(E log V)</span>
-                <span className="flex justify-between"><b>Space:</b> O(V)</span>
+              <div className="flex flex-col gap-1 text-[10px] font-mono bg-black/50 p-3 rounded-none text-gray-400 border border-white/5">
+                <span className="flex justify-between"><span>TIME</span> <span className="text-white">O(E log V)</span></span>
+                <span className="flex justify-between"><span>SPACE</span> <span className="text-white">O(V)</span></span>
               </div>
             </div>
 
-            <div className="floating-box-4 bg-gradient-to-br from-rose-900/80 to-rose-950/80 p-6 rounded-3xl border border-rose-400/30 shadow-[0_0_30px_rgba(244,63,94,0.3)] hover:shadow-[0_0_50px_rgba(244,63,94,0.6)] transition-all">
-              <h3 className="text-rose-300 font-extrabold uppercase mb-3 tracking-wider text-lg border-b border-rose-400/30 pb-2">Bellman-Ford</h3>
-              <p className="text-sm text-rose-100 mb-5 leading-relaxed">
-                Unlike Dijkstra, it can handle negative weights. It repeatedly relaxes edges to <u className="decoration-rose-400 decoration-2 underline-offset-4 font-semibold">detect negative cycles</u>, which we use for identifying toll arbitrage opportunities.
+            <div className="floating-box-4 glass-panel p-6 rounded-none border-l-4 border-l-rose-500 hover:bg-white/5 transition-all">
+              <h3 className="text-rose-400 font-mono uppercase mb-3 tracking-wider text-sm">Bellman-Ford</h3>
+              <p className="text-sm text-gray-300 mb-5 leading-relaxed">
+                Can handle negative weights. Repeatedly relaxes edges to <u className="decoration-rose-500 decoration-2 underline-offset-4">detect negative cycles</u>, used for identifying toll arbitrage.
               </p>
-              <div className="flex flex-col gap-1 text-xs font-mono bg-rose-950/50 p-3 rounded-xl text-rose-200 border border-rose-800">
-                <span className="flex justify-between"><b>Time:</b> O(V × E)</span>
-                <span className="flex justify-between"><b>Space:</b> O(V)</span>
+              <div className="flex flex-col gap-1 text-[10px] font-mono bg-black/50 p-3 rounded-none text-gray-400 border border-white/5">
+                <span className="flex justify-between"><span>TIME</span> <span className="text-white">O(V × E)</span></span>
+                <span className="flex justify-between"><span>SPACE</span> <span className="text-white">O(V)</span></span>
               </div>
             </div>
 
@@ -179,45 +180,45 @@ export default function Home() {
           
           {/* Algorithm Control Center */}
           <div className="lg:col-span-4 flex flex-col gap-6">
-            <div className="glass-panel rounded-3xl p-6 flex flex-col border border-white/20 transition-all h-full relative overflow-hidden shadow-2xl bg-black/40">
+            <div className="glass-panel p-6 flex flex-col h-full rounded-none">
                
-               <h2 className="text-lg font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-3 border-b border-white/10 pb-4">
-                <Navigation size={20} className="text-cyan-400" /> Control Center
+               <h2 className="text-sm font-mono text-white uppercase tracking-widest mb-6 flex items-center gap-3 border-b border-white/10 pb-4">
+                <Terminal size={16} className="text-[#00f5a0]" /> root@nexus:~#
                </h2>
               
                <div className="space-y-5 mb-8">
                  <div className="flex flex-col gap-2">
-                    <label className="text-xs uppercase text-cyan-300 ml-1 font-bold tracking-wider">Select Algorithm</label>
+                    <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">> Select_Module</label>
                     <select 
                       value={algorithm} 
                       onChange={(e) => setAlgorithm(e.target.value)} 
-                      className="bg-black/60 border border-cyan-500/30 rounded-xl p-3.5 text-sm focus:border-cyan-400 outline-none text-white w-full cursor-pointer transition-colors"
+                      className="bg-black border border-white/20 p-3 text-sm focus:border-[#00f5a0] outline-none text-white w-full cursor-pointer transition-colors font-mono rounded-none"
                     >
-                      <option value="dijkstra">Dijkstra's Shortest Path</option>
-                      <option value="bellman">Bellman-Ford (Arbitrage)</option>
-                      <option value="kruskal">Kruskal's MST</option>
-                      <option value="prim">Prim's MST</option>
+                      <option value="dijkstra">Dijkstra [SHORTEST_PATH]</option>
+                      <option value="bellman">Bellman-Ford [ARBITRAGE]</option>
+                      <option value="kruskal">Kruskal [MIN_SPANNING_TREE]</option>
+                      <option value="prim">Prim [MIN_SPANNING_TREE]</option>
                     </select>
                  </div>
 
                  {isRoutingAlgo && (
-                   <div className="bg-white/5 p-4 rounded-2xl border border-white/10 space-y-4">
+                   <div className="bg-black/40 p-4 border border-white/5 space-y-4 rounded-none">
                      <div className="flex flex-col gap-2">
-                        <label className="text-xs uppercase text-gray-400 ml-1 tracking-wider">Origin</label>
+                        <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">> Origin_Node</label>
                         <select 
                           value={origin} 
                           onChange={(e) => setOrigin(e.target.value)} 
-                          className="bg-black/60 border border-white/10 rounded-xl p-3 text-sm focus:border-cyan-400 outline-none text-white w-full cursor-pointer"
+                          className="bg-black border border-white/20 p-3 text-sm focus:border-[#00f5a0] outline-none text-white w-full cursor-pointer font-mono rounded-none"
                         >
                           {Object.keys(CITIES).map(key => <option key={key} value={key}>{key}</option>)}
                         </select>
                      </div>
                      <div className="flex flex-col gap-2">
-                        <label className="text-xs uppercase text-gray-400 ml-1 tracking-wider">Destination</label>
+                        <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">> Target_Node</label>
                         <select 
                           value={destination} 
                           onChange={(e) => setDestination(e.target.value)} 
-                          className="bg-black/60 border border-white/10 rounded-xl p-3 text-sm focus:border-cyan-400 outline-none text-white w-full cursor-pointer"
+                          className="bg-black border border-white/20 p-3 text-sm focus:border-[#00f5a0] outline-none text-white w-full cursor-pointer font-mono rounded-none"
                         >
                           {Object.keys(CITIES).map(key => <option key={key} value={key}>{key}</option>)}
                         </select>
@@ -226,52 +227,51 @@ export default function Home() {
                  )}
               </div>
 
-              <button onClick={executeAlgorithm} className="w-full mt-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-xl p-4 font-bold text-sm transition-all shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] active:scale-[0.98] mb-6">
-                EXECUTE NETWORK COMPUTE
+              <button onClick={executeAlgorithm} className="w-full mt-auto bg-[#00f5a0] text-black hover:bg-[#00d188] p-4 font-mono font-bold text-sm transition-all rounded-none mb-6">
+                > EXECUTE()
               </button>
 
               {/* Output Console */}
-              <div className="bg-black/80 rounded-xl p-4 border border-green-500/30 font-mono text-xs text-gray-400 min-h-[90px] flex flex-col justify-end shadow-inner">
-                <div className="flex items-center gap-2 mb-2 opacity-70 text-green-400"><Terminal size={14}/> SYSTEM OUTPUT</div>
-                <span className="text-green-300 leading-relaxed">{consoleOutput}</span>
+              <div className="bg-black p-4 border border-white/10 font-mono text-xs text-gray-400 min-h-[90px] flex flex-col justify-end rounded-none">
+                <span className="text-[#00f5a0] leading-relaxed">{consoleOutput}</span>
               </div>
             </div>
           </div>
 
           {/* Map Visualization */}
           <div className="lg:col-span-8 flex flex-col gap-6">
-            <div className="glass-panel rounded-3xl overflow-hidden border border-white/20 relative h-[500px] flex flex-col shadow-2xl bg-black/40">
-              <div className="absolute top-5 left-5 z-10 bg-black/60 px-4 py-2 rounded-xl flex items-center gap-2 backdrop-blur-md border border-white/10 shadow-lg">
-                <Activity size={16} className="text-cyan-400 animate-pulse" />
-                <span className="text-xs font-bold tracking-widest uppercase text-white">Live Route Map</span>
+            <div className="glass-panel overflow-hidden border border-white/20 relative h-[500px] flex flex-col rounded-none">
+              <div className="absolute top-5 left-5 z-10 bg-black px-4 py-2 flex items-center gap-2 border-l-2 border-l-[#00f5a0]">
+                <Activity size={16} className="text-[#00f5a0]" />
+                <span className="text-xs font-mono tracking-widest text-white">LIVE_MAP_RENDER</span>
               </div>
-              <div className="flex-1 w-full h-full bg-[#0A0F1F] relative">
+              <div className="flex-1 w-full h-full bg-[#050505] relative">
                 <MapComponent edges={activeEdges} />
-                <div className="absolute inset-0 pointer-events-none rounded-3xl shadow-[inset_0_0_60px_rgba(0,0,0,0.9)]" />
+                <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_60px_rgba(0,0,0,0.9)]" />
               </div>
             </div>
 
             {/* Metrics Panels */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-               <div className="glass-panel rounded-3xl p-6 border border-white/20 flex items-center justify-between bg-gradient-to-r from-black/40 to-blue-900/20 shadow-xl">
+               <div className="glass-panel p-6 border-t-2 border-t-[#00f5a0] flex items-center justify-between rounded-none">
                   <div>
-                     <p className="text-xs text-cyan-300 uppercase tracking-widest mb-1 font-bold">Network Distance</p>
-                     <p className="text-4xl font-black font-mono text-white">{metrics.distance} <span className="text-lg text-gray-400 font-sans">km</span></p>
-                     <p className="text-xs text-gray-400 mt-2 font-medium">ETA: <span className="text-cyan-100">{metrics.time}</span></p>
+                     <p className="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-1">> Distance</p>
+                     <p className="text-4xl font-mono text-white">{metrics.distance} <span className="text-lg text-gray-500">km</span></p>
                   </div>
-                  <div className="w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center border border-cyan-500/40 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
-                     <Ruler size={28} className="text-cyan-300" />
+                  <div className="text-right">
+                     <p className="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-1">> ETA</p>
+                     <p className="text-xl font-mono text-white">{metrics.time}</p>
                   </div>
                </div>
 
-               <div className="glass-panel rounded-3xl p-6 border border-white/20 flex items-center justify-between bg-gradient-to-r from-black/40 to-emerald-900/20 shadow-xl">
+               <div className="glass-panel p-6 border-t-2 border-t-[#00f5a0] flex items-center justify-between rounded-none">
                   <div>
-                     <p className="text-xs text-emerald-300 uppercase tracking-widest mb-1 font-bold">Base Toll Cost</p>
-                     <p className="text-4xl font-black font-mono text-white"><span className="text-2xl text-emerald-400 mr-1">₹</span>{metrics.toll.replace('₹','')}</p>
-                     <p className="text-xs text-emerald-400/80 mt-2 font-medium flex items-center gap-1"><Zap size={12}/> Fastag Authorized</p>
+                     <p className="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-1">> Toll_Cost</p>
+                     <p className="text-4xl font-mono text-[#00f5a0]"><span className="text-2xl mr-1">₹</span>{metrics.toll.replace('₹','')}</p>
                   </div>
-                  <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.3)]">
-                     <CreditCard size={28} className="text-emerald-300" />
+                  <div className="text-right">
+                     <p className="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-1">> Tag_Status</p>
+                     <p className="text-sm font-mono text-[#00f5a0] flex items-center gap-1 justify-end"><Zap size={14}/> AUTH</p>
                   </div>
                </div>
             </div>
@@ -282,8 +282,8 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="max-w-7xl mx-auto pt-8 pb-12 mt-16 text-center text-sm text-cyan-200/50 font-medium">
-         <p>© {new Date().getFullYear()} Expressway Intelligence Platform. Built for Data Structures & Algorithms Analysis.</p>
+      <footer className="max-w-7xl mx-auto pt-8 pb-12 mt-16 border-t border-white/10 text-center text-[10px] text-gray-600 font-mono">
+         <p>SYS_VER_1.0.0 // EXPRESSWAY DSA TERMINAL</p>
       </footer>
       
     </div>

@@ -3,12 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --background: #09090b;
+  --background: #0a0a0a;
   --foreground: #fafafa;
 }
 
 body {
   background-color: var(--background);
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
   color: var(--foreground);
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
@@ -16,11 +20,21 @@ body {
 
 /* Glassmorphism utility */
 .glass-panel {
-  background: rgba(18, 18, 24, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Neon accents */
+.neon-border {
+  border: 1px solid rgba(0, 245, 160, 0.3);
+  box-shadow: 0 0 15px rgba(0, 245, 160, 0.1);
+}
+
+.neon-text {
+  color: #00f5a0;
+  text-shadow: 0 0 10px rgba(0, 245, 160, 0.3);
 }
 
 /* Custom Scrollbar */
@@ -31,35 +45,21 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.2);
+  background: rgba(0, 245, 160, 0.3);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255,255,255,0.4);
+  background: rgba(0, 245, 160, 0.6);
 }
 
-/* Pulsing dot animation */
-@keyframes pulse-glow {
-  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
-  70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s infinite;
-}
-
-/* Vibrant Animated Background */
-.catchy-bg {
-  background: linear-gradient(-45deg, #0f172a, #4c1d95, #1d4ed8, #064e3b, #831843);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-}
-
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Background Edge Glows */
+.glow-edge {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(circle at top right, rgba(0, 245, 160, 0.15), transparent 50%),
+              radial-gradient(circle at bottom left, rgba(0, 150, 255, 0.1), transparent 50%);
 }
 
 /* Floating animation for boxes */
@@ -70,6 +70,6 @@ body {
 
 @keyframes float {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  50% { transform: translateY(-8px); }
   100% { transform: translateY(0px); }
 }
