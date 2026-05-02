@@ -1,4 +1,7 @@
-import MapComponent from '@/components/MapComponent';
+import dynamic from 'next/dynamic';
+const MapComponent = dynamic(() => import('@/components/MapComponent'), {
+  ssr: false,
+});
 import { Layers, MapPin, Navigation, Activity, Zap, CreditCard, Clock, Ruler, Terminal, GitMerge, Search, Route } from 'lucide-react';
 
 export default function Home() {
