@@ -92,6 +92,58 @@ export default function Home() {
       {/* Main Grid Dashboard */}
       <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
         
+        {/* Theory Section (Moved to the top) */}
+        <div className="lg:col-span-12 mb-2 flex items-center gap-3">
+           <BookOpen className="text-blue-500" />
+           <h2 className="text-xl font-bold tracking-widest uppercase">Algorithmic Theory & Analysis</h2>
+        </div>
+
+        <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+           <div className="glass-panel p-6 rounded-2xl border border-white/5 hover:border-blue-500/20 transition-colors">
+             <h3 className="text-blue-400 font-bold uppercase mb-2 tracking-wider text-sm">Dijkstra's Algorithm</h3>
+             <p className="text-sm text-gray-400 mb-4 leading-relaxed">
+               Dijkstra's algorithm finds the absolute shortest path from a starting node to a target node in a weighted graph. It uses a priority queue to greedily select the closest unvisited node. It is optimal for routing but cannot handle negative edge weights.
+             </p>
+             <div className="flex justify-between text-xs font-mono bg-black/40 p-3 rounded-lg text-gray-300">
+                <span>Time: O(E log V)</span>
+                <span>Space: O(V)</span>
+             </div>
+           </div>
+
+           <div className="glass-panel p-6 rounded-2xl border border-white/5 hover:border-green-500/20 transition-colors">
+             <h3 className="text-green-400 font-bold uppercase mb-2 tracking-wider text-sm">Kruskal's Algorithm</h3>
+             <p className="text-sm text-gray-400 mb-4 leading-relaxed">
+               Kruskal's algorithm computes the Minimum Spanning Tree (MST) of the network. It sorts all edges in non-decreasing order of weight, then repeatedly adds the smallest edge to the MST provided it doesn't form a cycle, verified using a Disjoint Set structure.
+             </p>
+             <div className="flex justify-between text-xs font-mono bg-black/40 p-3 rounded-lg text-gray-300">
+                <span>Time: O(E log E)</span>
+                <span>Space: O(V + E)</span>
+             </div>
+           </div>
+
+           <div className="glass-panel p-6 rounded-2xl border border-white/5 hover:border-green-500/20 transition-colors">
+             <h3 className="text-green-400 font-bold uppercase mb-2 tracking-wider text-sm">Prim's Algorithm</h3>
+             <p className="text-sm text-gray-400 mb-4 leading-relaxed">
+               Prim's algorithm is another greedy method to construct an MST. Instead of sorting edges, it starts from a single vertex and continually grows the tree by selecting the cheapest edge that connects a visited vertex to an unvisited vertex.
+             </p>
+             <div className="flex justify-between text-xs font-mono bg-black/40 p-3 rounded-lg text-gray-300">
+                <span>Time: O(E log V)</span>
+                <span>Space: O(V)</span>
+             </div>
+           </div>
+
+           <div className="glass-panel p-6 rounded-2xl border border-white/5 hover:border-orange-500/20 transition-colors">
+             <h3 className="text-orange-400 font-bold uppercase mb-2 tracking-wider text-sm">Bellman-Ford Algorithm</h3>
+             <p className="text-sm text-gray-400 mb-4 leading-relaxed">
+               Unlike Dijkstra, Bellman-Ford can handle graphs with negative edge weights. It works by repeatedly relaxing all edges V-1 times. If any edge can still be relaxed after V-1 iterations, it detects the presence of a negative weight cycle (used here for arbitrage detection).
+             </p>
+             <div className="flex justify-between text-xs font-mono bg-black/40 p-3 rounded-lg text-gray-300">
+                <span>Time: O(V × E)</span>
+                <span>Space: O(V)</span>
+             </div>
+           </div>
+        </div>
+
         {/* Map Visualization */}
         <div className="lg:col-span-8 glass-panel rounded-2xl overflow-hidden border border-white/10 relative min-h-[500px] flex flex-col group hover:border-blue-500/30 transition-colors">
           <div className="absolute top-4 left-4 z-10 glass-panel px-3 py-1.5 rounded-lg flex items-center gap-2 backdrop-blur-md">
@@ -191,62 +243,10 @@ export default function Home() {
            </div>
         </div>
 
-        {/* Theory Section */}
-        <div className="lg:col-span-12 mt-12 mb-4 flex items-center gap-3">
-           <BookOpen className="text-blue-500" />
-           <h2 className="text-xl font-bold tracking-widest uppercase">Algorithmic Theory & Analysis</h2>
-        </div>
-
-        <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-           <div className="glass-panel p-6 rounded-2xl border border-white/5 hover:border-blue-500/20 transition-colors">
-             <h3 className="text-blue-400 font-bold uppercase mb-2 tracking-wider text-sm">Dijkstra's Algorithm</h3>
-             <p className="text-sm text-gray-400 mb-4 leading-relaxed">
-               Dijkstra's algorithm finds the absolute shortest path from a starting node to a target node in a weighted graph. It uses a priority queue to greedily select the closest unvisited node. It is optimal for routing but cannot handle negative edge weights.
-             </p>
-             <div className="flex justify-between text-xs font-mono bg-black/40 p-3 rounded-lg text-gray-300">
-                <span>Time: O(E log V)</span>
-                <span>Space: O(V)</span>
-             </div>
-           </div>
-
-           <div className="glass-panel p-6 rounded-2xl border border-white/5 hover:border-green-500/20 transition-colors">
-             <h3 className="text-green-400 font-bold uppercase mb-2 tracking-wider text-sm">Kruskal's Algorithm</h3>
-             <p className="text-sm text-gray-400 mb-4 leading-relaxed">
-               Kruskal's algorithm computes the Minimum Spanning Tree (MST) of the network. It sorts all edges in non-decreasing order of weight, then repeatedly adds the smallest edge to the MST provided it doesn't form a cycle, verified using a Disjoint Set structure.
-             </p>
-             <div className="flex justify-between text-xs font-mono bg-black/40 p-3 rounded-lg text-gray-300">
-                <span>Time: O(E log E)</span>
-                <span>Space: O(V + E)</span>
-             </div>
-           </div>
-
-           <div className="glass-panel p-6 rounded-2xl border border-white/5 hover:border-green-500/20 transition-colors">
-             <h3 className="text-green-400 font-bold uppercase mb-2 tracking-wider text-sm">Prim's Algorithm</h3>
-             <p className="text-sm text-gray-400 mb-4 leading-relaxed">
-               Prim's algorithm is another greedy method to construct an MST. Instead of sorting edges, it starts from a single vertex and continually grows the tree by selecting the cheapest edge that connects a visited vertex to an unvisited vertex.
-             </p>
-             <div className="flex justify-between text-xs font-mono bg-black/40 p-3 rounded-lg text-gray-300">
-                <span>Time: O(E log V)</span>
-                <span>Space: O(V)</span>
-             </div>
-           </div>
-
-           <div className="glass-panel p-6 rounded-2xl border border-white/5 hover:border-orange-500/20 transition-colors">
-             <h3 className="text-orange-400 font-bold uppercase mb-2 tracking-wider text-sm">Bellman-Ford Algorithm</h3>
-             <p className="text-sm text-gray-400 mb-4 leading-relaxed">
-               Unlike Dijkstra, Bellman-Ford can handle graphs with negative edge weights. It works by repeatedly relaxing all edges V-1 times. If any edge can still be relaxed after V-1 iterations, it detects the presence of a negative weight cycle (used here for arbitrage detection).
-             </p>
-             <div className="flex justify-between text-xs font-mono bg-black/40 p-3 rounded-lg text-gray-300">
-                <span>Time: O(V × E)</span>
-                <span>Space: O(V)</span>
-             </div>
-           </div>
-        </div>
-
       </main>
 
       {/* Footer */}
-      <footer className="max-w-7xl mx-auto border-t border-white/10 pt-6 pb-12 text-center text-xs text-gray-500">
+      <footer className="max-w-7xl mx-auto border-t border-white/10 pt-6 pb-12 mt-12 text-center text-xs text-gray-500">
          <p>© {new Date().getFullYear()} Expressway Intelligence Platform. Built for Data Structures & Algorithms Analysis.</p>
       </footer>
       
