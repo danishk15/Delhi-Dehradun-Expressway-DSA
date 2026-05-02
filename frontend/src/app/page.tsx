@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Layers, MapPin, Navigation, Activity, Zap, CreditCard, Clock, Ruler, Terminal, GitMerge, Search, Route as RouteIcon } from 'lucide-react';
-import { CITIES } from '@/components/MapComponent';
+import { CITIES } from '@/data';
 
 const MapComponent = dynamic(() => import('@/components/MapComponent'), {
   ssr: false,

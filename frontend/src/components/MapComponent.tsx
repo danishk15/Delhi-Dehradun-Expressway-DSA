@@ -3,25 +3,20 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { CITIES } from '@/data';
 
-// Fix Leaflet's default icon path issues in React
-const icon = L.icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-});
-
-export const CITIES: Record<string, any> = {
-    'Delhi Hub': { id: 1, name: 'Delhi Hub', lat: 28.7041, lng: 77.1025 },
-    'Baghpat Checkpoint': { id: 2, name: 'Baghpat Checkpoint', lat: 28.9428, lng: 77.2274 },
-    'Shamli': { id: 3, name: 'Shamli', lat: 29.4478, lng: 77.3061 },
-    'Saharanpur Grid': { id: 4, name: 'Saharanpur Grid', lat: 29.9640, lng: 77.5460 },
-    'Dehradun Terminus': { id: 5, name: 'Dehradun Terminus', lat: 30.3165, lng: 78.0322 }
-};
+let icon: L.Icon;
 
 export default function MapComponent({ route }: { route: [number, number][] }) {
+  if (typeof window !== 'undefined' && !icon) {
+    icon = L.icon({
+      iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+      iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+      shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+    });
+  }
   return (
     <div className="w-full h-full relative z-0">
       <MapContainer 
