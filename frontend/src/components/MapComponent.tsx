@@ -7,7 +7,7 @@ import { CITIES } from '@/data';
 
 let icon: L.Icon;
 
-export default function MapComponent({ route }: { route: [number, number][] }) {
+export default function MapComponent({ edges }: { edges: [number, number][][] }) {
   if (typeof window !== 'undefined' && !icon) {
     icon = L.icon({
       iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
@@ -36,9 +36,9 @@ export default function MapComponent({ route }: { route: [number, number][] }) {
             </Popup>
           </Marker>
         ))}
-        {route && route.length > 0 && (
-          <Polyline positions={route} color="#3B82F6" weight={4} opacity={0.8} />
-        )}
+        {edges && edges.map((edgeCoords, idx) => (
+          <Polyline key={`edge-${idx}`} positions={edgeCoords} color="#3B82F6" weight={4} opacity={0.8} />
+        ))}
       </MapContainer>
     </div>
   );

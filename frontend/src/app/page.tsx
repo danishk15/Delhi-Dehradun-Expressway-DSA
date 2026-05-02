@@ -4,6 +4,7 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Layers, MapPin, Navigation, Activity, Zap, CreditCard, Clock, Ruler, Terminal, GitMerge, Search, Route as RouteIcon } from 'lucide-react';
 import { CITIES } from '@/data';
+import { runDijkstra, runKruskal, runPrim, runBellmanFord, Edge } from '@/utils/algorithms';
 
 const MapComponent = dynamic(() => import('@/components/MapComponent'), {
   ssr: false,
@@ -12,40 +13,49 @@ const MapComponent = dynamic(() => import('@/components/MapComponent'), {
 export default function Home() {
   const [origin, setOrigin] = useState('Delhi Hub');
   const [destination, setDestination] = useState('Dehradun Terminus');
-  const [activeRoute, setActiveRoute] = useState<[number, number][]>([]);
+  const [activeEdges, setActiveEdges] = useState<[number, number][][]>([]);
   const [metrics, setMetrics] = useState({ distance: '0', time: '--', toll: '₹0' });
   const [consoleOutput, setConsoleOutput] = useState('> Waiting for execution...');
+  const [mstAlgo, setMstAlgo] = useState('kruskal');
 
-  const computeRoute = () => {
-    let routeCoords: [number, number][] = [];
-    
-    if (origin === 'Delhi Hub' && destination === 'Dehradun Terminus') {
-      routeCoords = [
-        [CITIES['Delhi Hub'].lat, CITIES['Delhi Hub'].lng],
-        [CITIES['Baghpat Checkpoint'].lat, CITIES['Baghpat Checkpoint'].lng],
-        [CITIES['Shamli'].lat, CITIES['Shamli'].lng],
-        [CITIES['Saharanpur Grid'].lat, CITIES['Saharanpur Grid'].lng],
-        [CITIES['Dehradun Terminus'].lat, CITIES['Dehradun Terminus'].lng],
-      ];
-      setMetrics({ distance: '192', time: '3h 45m', toll: '₹240' });
-      setConsoleOutput('> Shortest Path found via Baghpat, Shamli, Saharanpur.');
-    } else if (origin === 'Delhi Hub' && destination === 'Saharanpur Grid') {
-      routeCoords = [
-        [CITIES['Delhi Hub'].lat, CITIES['Delhi Hub'].lng],
-        [CITIES['Saharanpur Grid'].lat, CITIES['Saharanpur Grid'].lng],
-      ];
-      setMetrics({ distance: '170', time: '2h 10m', toll: '₹180' });
-      setConsoleOutput('> Direct path found to Saharanpur Grid.');
-    } else {
-       // Fallback direct line for any other combination
-       routeCoords = [
-        [CITIES[origin].lat, CITIES[origin].lng],
-        [CITIES[destination].lat, CITIES[destination].lng],
-       ];
-       setMetrics({ distance: '120', time: '1h 50m', toll: '₹100' });
-       setConsoleOutput(`> Path found from ${origin} to ${destination}.`);
+  const convertEdgesToCoords = (edges: Edge[]): [number, number][][] => {
+    return edges.map(e => [
+      [CITIES[e.u].lat, CITIES[e.u].lng],
+      [CITIES[e.v].lat, CITIES[e.v].lng]
+    ]);
+  };
+
+  const handleComputeRoute = () => {
+    const result = runDijkstra(origin, destination);
+    if (result.pathEdges.length === 0) {
+      setConsoleOutput(`> No path found from ${origin} to ${destination}.`);
+      return;
     }
-    setActiveRoute(routeCoords);
+    setActiveEdges(convertEdgesToCoords(result.pathEdges));
+    setMetrics({
+      distance: result.totalDist.toString(),
+      time: `${Math.floor(result.totalTime / 60)}h ${result.totalTime % 60}m`,
+      toll: `₹${result.totalToll}`
+    });
+    setConsoleOutput(`> Dijkstra execution complete. Shortest path found: ${result.totalDist}km.`);
+  };
+
+  const handleGenerateMST = () => {
+    const result = mstAlgo === 'kruskal' ? runKruskal() : runPrim();
+    setActiveEdges(convertEdgesToCoords(result.mst));
+    setMetrics({
+      distance: result.totalDist.toString(),
+      time: '--',
+      toll: '--'
+    });
+    setConsoleOutput(`> ${mstAlgo.toUpperCase()} execution complete. MST Weight: ${result.totalDist}km.`);
+  };
+
+  const handleScanArbitrage = () => {
+    const result = runBellmanFord(origin);
+    setConsoleOutput(result.hasNegativeCycle 
+      ? '> WARNING: Negative cycle detected! Toll arbitrage is possible.' 
+      : '> Bellman-Ford complete. No negative toll cycles detected. Network is secure.');
   };
 
   return (
@@ -81,7 +91,7 @@ export default function Home() {
             <span className="text-xs font-semibold tracking-wider uppercase text-gray-300">Live Telemetry Map</span>
           </div>
           <div className="flex-1 w-full h-full bg-[#0A0F1F] relative">
-            <MapComponent route={activeRoute} />
+            <MapComponent edges={activeEdges} />
             <div className="absolute inset-0 pointer-events-none rounded-2xl shadow-[inset_0_0_50px_rgba(0,0,0,0.8)]" />
           </div>
         </div>
@@ -119,7 +129,7 @@ export default function Home() {
                </div>
             </div>
 
-            <button onClick={computeRoute} className="w-full bg-blue-600 hover:bg-blue-500 text-white rounded-lg p-3 font-semibold text-sm transition-all shadow-[0_0_15px_rgba(59,130,246,0.3)] active:scale-[0.98] mb-4">
+            <button onClick={handleComputeRoute} className="w-full bg-blue-600 hover:bg-blue-500 text-white rounded-lg p-3 font-semibold text-sm transition-all shadow-[0_0_15px_rgba(59,130,246,0.3)] active:scale-[0.98] mb-4">
               Compute Route
             </button>
 
@@ -137,7 +147,7 @@ export default function Home() {
                 <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest flex items-center gap-2">
                   <GitMerge size={16} className="text-green-500" /> Optimize Network
                 </h2>
-                <select className="bg-transparent border-none text-xs text-green-400 font-mono outline-none cursor-pointer">
+                <select value={mstAlgo} onChange={e => setMstAlgo(e.target.value)} className="bg-transparent border-none text-xs text-green-400 font-mono outline-none cursor-pointer">
                   <option value="kruskal">Kruskal's Alg</option>
                   <option value="prim">Prim's Alg</option>
                 </select>
@@ -147,7 +157,7 @@ export default function Home() {
               Calculates the Minimum Spanning Tree (MST) to connect all hubs with the absolute minimum toll/distance overhead.
             </p>
 
-            <button onClick={() => setConsoleOutput('> MST Generated. Optimized road network overlaid on map.')} className="w-full bg-green-600 hover:bg-green-500 text-white rounded-lg p-3 font-semibold text-sm transition-all shadow-[0_0_15px_rgba(34,197,94,0.3)] active:scale-[0.98] mb-4">
+            <button onClick={handleGenerateMST} className="w-full bg-green-600 hover:bg-green-500 text-white rounded-lg p-3 font-semibold text-sm transition-all shadow-[0_0_15px_rgba(34,197,94,0.3)] active:scale-[0.98] mb-4">
               Generate MST
             </button>
           </div>
@@ -163,7 +173,7 @@ export default function Home() {
               <RouteIcon size={16} className="text-orange-500" /> Fuel Arbitrage (Bellman-Ford)
              </h2>
              <p className="text-xs text-gray-400 mb-4">Detect negative cycles for potential fuel/toll arbitrage loops across the highway network.</p>
-             <button onClick={() => setConsoleOutput('> No negative toll cycles detected. Network is secure.')} className="bg-white/10 hover:bg-white/20 text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors w-full border border-white/10 hover:border-orange-500/50">
+             <button onClick={handleScanArbitrage} className="bg-white/10 hover:bg-white/20 text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors w-full border border-white/10 hover:border-orange-500/50">
                Scan for Arbitrage
              </button>
            </div>
