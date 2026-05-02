@@ -188,7 +188,7 @@ export default function Home() {
               
                <div className="space-y-5 mb-8">
                  <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">> Select_Module</label>
+                    <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">&gt; Select_Module</label>
                     <select 
                       value={algorithm} 
                       onChange={(e) => setAlgorithm(e.target.value)} 
@@ -204,7 +204,7 @@ export default function Home() {
                  {isRoutingAlgo && (
                    <div className="bg-black/40 p-4 border border-white/5 space-y-4 rounded-none">
                      <div className="flex flex-col gap-2">
-                        <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">> Origin_Node</label>
+                        <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">&gt; Origin_Node</label>
                         <select 
                           value={origin} 
                           onChange={(e) => setOrigin(e.target.value)} 
@@ -214,7 +214,7 @@ export default function Home() {
                         </select>
                      </div>
                      <div className="flex flex-col gap-2">
-                        <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">> Target_Node</label>
+                        <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">&gt; Target_Node</label>
                         <select 
                           value={destination} 
                           onChange={(e) => setDestination(e.target.value)} 
@@ -228,7 +228,7 @@ export default function Home() {
               </div>
 
               <button onClick={executeAlgorithm} className="w-full mt-auto bg-[#00f5a0] text-black hover:bg-[#00d188] p-4 font-mono font-bold text-sm transition-all rounded-none mb-6">
-                > EXECUTE()
+                &gt; EXECUTE()
               </button>
 
               {/* Output Console */}
@@ -255,22 +255,22 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                <div className="glass-panel p-6 border-t-2 border-t-[#00f5a0] flex items-center justify-between rounded-none">
                   <div>
-                     <p className="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-1">> Distance</p>
+                     <p className="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-1">&gt; Distance</p>
                      <p className="text-4xl font-mono text-white">{metrics.distance} <span className="text-lg text-gray-500">km</span></p>
                   </div>
                   <div className="text-right">
-                     <p className="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-1">> ETA</p>
+                     <p className="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-1">&gt; ETA</p>
                      <p className="text-xl font-mono text-white">{metrics.time}</p>
                   </div>
                </div>
 
                <div className="glass-panel p-6 border-t-2 border-t-[#00f5a0] flex items-center justify-between rounded-none">
                   <div>
-                     <p className="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-1">> Toll_Cost</p>
+                     <p className="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-1">&gt; Toll_Cost</p>
                      <p className="text-4xl font-mono text-[#00f5a0]"><span className="text-2xl mr-1">₹</span>{metrics.toll.replace('₹','')}</p>
                   </div>
                   <div className="text-right">
-                     <p className="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-1">> Tag_Status</p>
+                     <p className="text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-1">&gt; Tag_Status</p>
                      <p className="text-sm font-mono text-[#00f5a0] flex items-center gap-1 justify-end"><Zap size={14}/> AUTH</p>
                   </div>
                </div>
